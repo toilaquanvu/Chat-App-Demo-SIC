@@ -2,7 +2,7 @@ import Button from '@mui/material/Button'
 import Head from 'next/head'
 import styled from 'styled-components'
 import Image from 'next/image'
-import SICLogo from 'E:/chat-app-sic/assets/SICLogo.png'
+import SICLogo from '../assets/SICLogo.png'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { auth } from '../config/firebase'
 
