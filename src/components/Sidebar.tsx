@@ -28,7 +28,6 @@ const StyledContainer = styled.div`
 	max-width: 350px;
 	overflow-y: scroll;
 	border-right: 1px solid whitesmoke;
-
 	/* Hide scrollbar for Chrome, Safari and Opera */
 	::-webkit-scrollbar {
 		display: none;
