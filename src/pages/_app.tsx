@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import 'E:/chat-app-sic/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Login from './login'
 import { useAuthState } from 'react-firebase-hooks/auth'

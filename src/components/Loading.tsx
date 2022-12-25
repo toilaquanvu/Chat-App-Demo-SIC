@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import SICLogo from "../assets/SICLogo.png";
+import SICLogo from "E:/chat-app-sic/assets/SICLogo.png";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const StyledContainer = styled.div`
