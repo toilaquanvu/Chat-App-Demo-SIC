@@ -2,8 +2,6 @@ import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import styled from 'styled-components'
-import ChatIcon from '@mui/icons-material/Chat'
-import MoreVerticalIcon from '@mui/icons-material/MoreVert'
 import LogoutIcon from '@mui/icons-material/Logout'
 import SearchIcon from '@mui/icons-material/Search'
 import Button from '@mui/material/Button'
@@ -13,7 +11,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
-import { TextField, DialogActions } from '@mui/material'
+import { TextField, DialogActions, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useState } from 'react'
 import * as EmailValidator from 'email-validator'
@@ -34,8 +32,8 @@ const StyledContainer = styled.div`
 	}
 
 	/* Hide scrollbar for IE, Edge and Firefox */
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+	 -ms-overflow-style: none; /*IE and Edge */
+	scrollbar-width: none; /*Firefox*/
 `
 
 const StyledHeader = styled.div`
@@ -56,6 +54,7 @@ const StyledSearch = styled.div`
 	align-items: center;
 	padding: 15px;
 	border-radius: 2px;
+
 `
 
 const StyledUserAvatar = styled(Avatar)`
@@ -69,12 +68,14 @@ const StyledSearchInput = styled.input`
 	outline: none;
 	border: none;
 	flex: 1;
+
 `
 
 const StyledSidebarButton = styled(Button)`
 	width: 100%;
 	border-top: 1px solid whitesmoke;
 	border-bottom: 1px solid whitesmoke;
+	border-radius: 50px;
 `
 
 const Sidebar = () => {
@@ -137,6 +138,7 @@ const Sidebar = () => {
 		}
 	}
 
+	  
 	return (
 		<StyledContainer>
 			<StyledHeader>
@@ -144,23 +146,18 @@ const Sidebar = () => {
 					<StyledUserAvatar src={loggedInUser?.photoURL || ''} />
 				</Tooltip>
 
+			<StyledSearch>
+				<SearchIcon />
+				<StyledSearchInput placeholder='Search in conversations' />
+			</StyledSearch>
 				<div>
-					<IconButton>
-						<ChatIcon />
-					</IconButton>
-					<IconButton>
-						<MoreVerticalIcon />
-					</IconButton>
+					
 					<IconButton onClick={logout}>
 						<LogoutIcon />
 					</IconButton>
 				</div>
 			</StyledHeader>
 
-			<StyledSearch>
-				<SearchIcon />
-				<StyledSearchInput placeholder='Search in conversations' />
-			</StyledSearch>
 
 			<StyledSidebarButton
 				onClick={() => {
@@ -207,7 +204,11 @@ const Sidebar = () => {
 						Create
 					</Button>
 				</DialogActions>
+				
 			</Dialog>
+
+
+
 		</StyledContainer>
 	)
 }
