@@ -31,7 +31,9 @@ import {
 	serverTimestamp,
 	setDoc
 } from 'firebase/firestore'
-
+//sử dụng thư viện emoji-picker-react
+import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
+import { useEffect } from 'react';
 const StyledRecipientHeader = styled.div`
 	position: sticky;
 	background-color: white;
@@ -96,7 +98,10 @@ const StyledInput = styled.input`
 const EndOfMessagesForAutoScroll = styled.div`
 	margin-bottom: 30px;
 `
-
+const StyledEmojiPickerContainer = styled.div`
+  position: absolute;
+  bottom: 70px;
+`;
 const ConversationScreen = ({
 	conversation,
 	messages
@@ -182,6 +187,27 @@ const ConversationScreen = ({
 		endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' })
 	}
 
+	const scrollToBottomWhenMessagesLoaded = () => {
+		if (!messagesLoading) {
+			scrollToBottom()
+		}
+	}
+
+	// scroll to bottom when messages loaded
+	scrollToBottomWhenMessagesLoaded()
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+
+	const handleEmojiClick = (
+		emoji: EmojiClickData,
+		event: MouseEvent
+	) => {
+		setNewMessage((prevMessage) => prevMessage + emoji.emoji);
+	};
+
+
+
+
 	return (
 		<>
 			<StyledRecipientHeader>
@@ -218,7 +244,16 @@ const ConversationScreen = ({
 
 			{/* Enter new message */}
 			<StyledInputContainer>
-				<InsertEmoticonIcon />
+
+				<IconButton onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+          <InsertEmoticonIcon />
+        </IconButton>
+
+        {showEmojiPicker && (
+          <StyledEmojiPickerContainer>
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </StyledEmojiPickerContainer>
+        )}
 				<StyledInput
 					value={newMessage}
 					onChange={event => setNewMessage(event.target.value)}
